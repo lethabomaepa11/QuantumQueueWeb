@@ -45,3 +45,11 @@ pnpm dev
 
 All the features from the desktop version are available in this web version.
 Check out the [desktop version README](https://github.com/dianbrown/QuantumQueue/blob/main/README.md) for more details.
+
+### Folder structure
+
+- `src/lib/features/cpu/` - CPU Scheduling algorithms state and logic
+- `src/lib/features/pra/` - Page Replacement algorithms state and logic
+- `src/routes/` - SvelteKit routes for the application
+- `src/lib/components/` - Reusable Svelte components
+- `src/routes/{page}/components/` - Page-specific components
