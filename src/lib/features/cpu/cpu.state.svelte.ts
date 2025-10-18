@@ -1,5 +1,5 @@
 import { SvelteMap } from "svelte/reactivity";
-import { addProcess, randomizeProcesses, removeProcess, resetProcesses, updateProcess, type Process } from "./core";
+import { addProcess, randomizeProcesses, removeProcess, resetProcesses, updateProcess, type Process } from "./processes";
 import { addSchedulingStep, resetSchedulingSteps } from "./scheduling";
 
 
@@ -14,4 +14,5 @@ export const cpuState = $state({
     visualizerGrid: new SvelteMap(), // Map of time unit to array of process IDs or null
     addSchedulingStep,
     resetSchedulingSteps,
+    quantum: 2,
 })

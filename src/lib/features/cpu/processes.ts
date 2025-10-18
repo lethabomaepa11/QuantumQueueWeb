@@ -13,6 +13,7 @@ const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 export const addProcess = (process: Process = {arrivalTime: 1, priority: 1, burstTime: 1}) => {
     process.id = generateProcessID(cpuState.processes.length);
     process.color = `hsl(${Math.floor(Math.random() * 360)}, 70%, 80%)`;
+    process.remainingTime = process.burstTime;
     cpuState.processes = [...cpuState.processes, process];
 }
 
@@ -54,6 +55,8 @@ export const randomizeProcesses = (count: number = -1) => {
     }
     // Clear existing processes
     resetProcesses();
+    //clear the scheduling steps
+    cpuState.resetSchedulingSteps();
     //add a first process with arrival time 1
     addProcess({arrivalTime: 1,priority: Math.floor(Math.random() * 6) + 1, burstTime: Math.floor(Math.random() * 10) + 1});
 
@@ -61,7 +64,7 @@ export const randomizeProcesses = (count: number = -1) => {
     for (let i = 1; i < count; i++) {
         const process: Process = {
             priority: Math.floor(Math.random() * 10) + 1,
-            arrivalTime: Math.floor(Math.random() * 6) + 1,
+            arrivalTime: Math.floor(Math.random() * 25) + 1,//arrival time between 1 and 25
             burstTime: Math.floor(Math.random() * 10) + 1
         };
         addProcess(process);

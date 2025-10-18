@@ -73,6 +73,7 @@
 	/* helper classes */
 	.bg-background {
 		background-color: var(--main_bg);
+		background: var(--main_bg);
 	}
 	.sidebar {
 		background-color: var(--sidebar_bg);

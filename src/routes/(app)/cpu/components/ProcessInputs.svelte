@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Process } from '$lib/features/cpu/core';
+	import type { Process } from '$lib/features/cpu/processes';
 	import { cpuState } from '$lib/features/cpu/cpu.state.svelte';
 	import {
 		Button,
@@ -15,6 +15,7 @@
 		TableHeadCell
 	} from 'flowbite-svelte';
 	import { onMount } from 'svelte';
+	import { showSchedulingSolution } from '$lib/features/cpu';
 
 	onMount(() => {
 		if (cpuState.processes.length === 0) {
@@ -107,8 +108,9 @@
 			{/each}
 		</Dropdown>
 		<Button class="mt-4 ml-2" onclick={() => cpuState.randomizeProcesses()}>Randomize</Button>
-		<Button class="mt-4 ml-2">Check Solution</Button>
-		<Button class="mt-4 ml-2">Show Solution</Button>
+		<Button class="mt-4 ml-2" onclick={showSchedulingSolution}>Show Solution</Button>
 		<Button class="mt-4 ml-2" onclick={() => cpuState.resetSchedulingSteps()}>Reset</Button>
+
+		<Button class="mt-4 ml-2">Share</Button>
 	</div>
 </section>

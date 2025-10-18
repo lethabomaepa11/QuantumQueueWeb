@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cpuState } from '$lib/features/cpu/cpu.state.svelte';
 	import {
+		Input,
 		Table,
 		TableBody,
 		TableBodyCell,
@@ -9,6 +10,7 @@
 		TableHeadCell
 	} from 'flowbite-svelte';
 	import { Table2 } from 'lucide-svelte';
+	import { fly, scale, slide } from 'svelte/transition';
 
 	const handleCellClick = (processId: string | undefined, cellNum: number) => {
 		cpuState.addSchedulingStep(processId, cellNum);
@@ -17,9 +19,19 @@
 
 <!-- Visualization area -->
 <section class="sidebar-border mt-6 w-full overflow-auto border p-4">
-	<h2 class="flex items-center gap-2 text-xl font-bold">
-		<Table2 size={20} /> Visualization
-	</h2>
+	<div class="flex">
+		{#if cpuState.algorithm.includes('rr')}
+			<div transition:scale class="flex items-center gap-2">
+				<p>Quantum:</p>
+				<Input class="p-2" bind:value={cpuState.quantum} type="number" placeholder="Quantum" />
+			</div>
+		{:else}
+			<h2 transition:scale class="flex items-center gap-2 text-xl font-bold">
+				<Table2 size={20} /> Visualization
+			</h2>
+		{/if}
+	</div>
+
 	<section class="mt-6">
 		<h2 class="text-xl font-bold">Timeline Grid</h2>
 		<Table hoverable={true} class="sidebar-border border">
@@ -43,7 +55,11 @@
 									? 'bg-secondary-500'
 									: ''}"
 							>
-								{cpuState.visualizerGrid.get(i + 1) === process.id ? process.id : ''}
+								{#if process.arrivalTime === i + 1}
+									<span class="text-xs">(r)</span>
+								{:else}
+									{cpuState.visualizerGrid.get(i + 1) === process.id ? '-' : ''}
+								{/if}
 							</TableBodyCell>
 						{/each}
 					</TableBodyRow>
