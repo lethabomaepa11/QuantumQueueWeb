@@ -15,7 +15,8 @@
 		TableHeadCell
 	} from 'flowbite-svelte';
 	import { onMount } from 'svelte';
-	import { showSchedulingSolution } from '$lib/features/cpu';
+	import { shareCpuPageState, showSchedulingSolution } from '$lib/features/cpu';
+	import { Forward, Share } from 'lucide-svelte';
 
 	onMount(() => {
 		if (cpuState.processes.length === 0) {
@@ -111,6 +112,6 @@
 		<Button class="mt-4 ml-2" onclick={showSchedulingSolution}>Show Solution</Button>
 		<Button class="mt-4 ml-2" onclick={() => cpuState.resetSchedulingSteps()}>Reset</Button>
 
-		<Button class="mt-4 ml-2">Share</Button>
+		<Button class="mt-4 ml-2" onclick={shareCpuPageState}><Forward color="white" /> Share</Button>
 	</div>
 </section>

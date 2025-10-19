@@ -11,6 +11,9 @@ importers:
       lucide-svelte:
         specifier: ^0.546.0
         version: 0.546.0(svelte@5.40.2)
+      lz-string:
+        specifier: ^1.5.0
+        version: 1.5.0
     devDependencies:
       '@eslint/compat':
         specifier: ^1.4.0

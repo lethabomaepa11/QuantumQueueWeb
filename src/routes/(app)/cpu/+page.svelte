@@ -1,12 +1,16 @@
 <script>
 	import SEO from '$lib/components/SEO.svelte';
-	import { Table, TableBody, TableHead, TableHeadCell } from 'flowbite-svelte';
 	import AlgoSelect from './components/AlgoSelect.svelte';
-	import { Table2 } from 'lucide-svelte';
 	import ProcessInputs from './components/ProcessInputs.svelte';
 	import SchedulingVisualizer from './components/SchedulingVisualizer.svelte';
+	import { parseCpuPageState } from '$lib/features/cpu';
+	import { onMount } from 'svelte';
 
 	// Algorithm Select component data
+
+	onMount(() => {
+		parseCpuPageState();
+	});
 </script>
 
 <SEO

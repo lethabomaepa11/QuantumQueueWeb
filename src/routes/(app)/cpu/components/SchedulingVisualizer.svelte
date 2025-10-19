@@ -50,8 +50,9 @@
 								onclick={() => handleCellClick(process.id, i + 1)}
 								ondblclick={() => handleCellClick(process.id, i + 1)}
 								id={`${process.id}${i + 1}`}
-								class="cursor-pointer border p-0 text-center {cpuState.visualizerGrid.get(i + 1) ===
-								process.id
+								class="cursor-pointer border p-0 text-center {cpuState.visualizerGrid?.get(
+									i + 1
+								) === process.id
 									? 'bg-secondary-500'
 									: ''}"
 							>
